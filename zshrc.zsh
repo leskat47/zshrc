@@ -31,9 +31,11 @@ UNAME=`uname`
 # Fallback info
 CURRENT_OS='Linux'
 DISTRO=''
+DISTRO_REL='current'
 
 if [[ $UNAME == 'Darwin' ]]; then
     CURRENT_OS='OS X'
+    DISTRO_REL='current'
 else
     # Must be Linux, determine distro
     # Work in progress, so far CentOS is the only Linux distro I have needed to
@@ -45,6 +47,15 @@ else
         else
             DISTRO='RHEL'
         fi
+        
+        # Still have some old RHEL distros around -- mark 6,7 as current
+        if grep -q "release 7" /etc/redhat-release; then
+            DISTRO_REL='current'
+        elif grep -q "release 6" /etc/redhat-release; then
+            DISTRO_REL='current'
+        else
+            DISTRO_REL='old'
+        fi
     fi
 fi
 
@@ -53,15 +64,6 @@ source ~/.antigen/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
-
-# Repos
-antigen bundle git
-antigen bundle svn
-
-# Python
-antigen bundle pip
-antigen bundle python
-antigen bundle virtualenv
 
 # OS specific plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
@@ -77,14 +79,29 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     antigen bundle cygwin
 fi
 
-antigen bundle command-not-found
+# Only Load Antigen Bundles for Current Distros
+if [[ $DISTRO_REL == 'current' ]]; then
+    
+    # Repos
+    antigen bundle git
+    antigen bundle svn
+    
+    # Python
+    antigen bundle pip
+    antigen bundle python
+    antigen bundle virtualenv
+    
+    # Ubuntu Command Not Found
+    antigen bundle command-not-found
 
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen-bundle zsh-users/zsh-history-substring-search
+    # Syntax highlighting bundle
+    antigen bundle zsh-users/zsh-syntax-highlighting
+    antigen-bundle zsh-users/zsh-history-substring-search
 
-# Load the theme.
-antigen theme avit
+    # Load the theme.
+    antigen theme avit
+
+fi
 
 # Tell antigen that you're done.
 antigen apply
