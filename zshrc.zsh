@@ -113,7 +113,7 @@ if [[ -e ~/zshrc/alias.zsh ]]; then
 fi
 
 # Source Work Tools File
-if [[ -e ~/zshrc/worktools.zsh ]]; then
-    source ~/zshrc/worktools.zsh
+if [[ -e ~/zshrc_work/worktools.zsh ]]; then
+    source ~/zshrc_work/worktools.zsh
 fi
 
