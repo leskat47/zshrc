@@ -14,7 +14,7 @@ export LC_ALL=en_US.UTF-8
 
 # Ensure editor is set
 export EDITOR=vim
-
+export SVN_EDITOR=vim
 
 # This fixes using SSH in urxvt
 if [[ $TERM == 'rxvt-unicode' ]] ; then
