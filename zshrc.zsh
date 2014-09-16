@@ -21,6 +21,8 @@ if [[ $TERM == 'rxvt-unicode' ]] ; then
     export TERM='xterm'
 fi
 
+# Add local dir to path
+export PATH=.:$PATH
 
 #
 # OS Detection
@@ -36,10 +38,8 @@ DISTRO_REL='current'
 if [[ $UNAME == 'Darwin' ]]; then
     CURRENT_OS='OS X'
     DISTRO_REL='current'
-else
-    # Must be Linux, determine distro
-    # Work in progress, so far CentOS is the only Linux distro I have needed to
-    # determine
+elif [[ $UNAME == 'Linux' ]]; then
+
     if [[ -f /etc/redhat-release ]]; then
         # CentOS or Redhat?
         if grep -q "CentOS" /etc/redhat-release; then
@@ -56,7 +56,14 @@ else
         else
             DISTRO_REL='old'
         fi
+    else
+        # Assume Ubuntu if it's not RHEL
+        DISTRO='Ubuntu'
+        DISTRO_REL='current'
     fi
+else
+    DISTRO='Unknown'
+    DISTRO_REL='current'
 fi
 
 # Load Antigen
@@ -74,7 +81,10 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
 
     if [[ $DISTRO == 'CentOS' ]]; then
         #antigen bundle centos
+    elif [[ $DISTRO == 'Ubuntu' ]]; then
+        antigen bundle command-not-found
     fi
+
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     antigen bundle cygwin
 fi
@@ -90,9 +100,6 @@ if [[ $DISTRO_REL == 'current' ]]; then
     antigen bundle pip
     antigen bundle python
     antigen bundle virtualenv
-    
-    # Ubuntu Command Not Found
-    antigen bundle command-not-found
 
     # Syntax highlighting bundle
     antigen bundle zsh-users/zsh-syntax-highlighting
@@ -107,7 +114,7 @@ fi
 antigen apply
 
 
-# Source Personal Alias File
+# Source Alias File
 if [[ -e ~/zshrc/alias.zsh ]]; then
     source ~/zshrc/alias.zsh
 fi
@@ -116,4 +123,5 @@ fi
 if [[ -e ~/zshrc_work/worktools.zsh ]]; then
     source ~/zshrc_work/worktools.zsh
 fi
+
 
