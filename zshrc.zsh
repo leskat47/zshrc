@@ -32,7 +32,7 @@ UNAME=`uname`
 
 # Fallback info
 CURRENT_OS='Linux'
-DISTRO=''
+DISTRO='NA'
 DISTRO_REL='current'
 
 if [[ $UNAME == 'Darwin' ]]; then
@@ -65,6 +65,7 @@ else
     DISTRO='Unknown'
     DISTRO_REL='current'
 fi
+
 
 # Load Antigen
 source ~/.antigen/antigen/antigen.zsh

@@ -78,30 +78,38 @@ function renamertest {
     find . -name "$1" -exec rename -n s/$1/$2/ {} \;
 }
 
-# Make the Super_L/R Keys into Control Keys
-# Useful on the Mac where the Command Key is mapped to the Super Key
-function supercntrl {
-    perl -e '
-        my @modmap = `xmodmap`;
-        # Iterate the modmap - look for existing Super_ and remove them
-        foreach (@modmap) {
-          if (/Super/) {
-            #print $_;
-            /^(\w+)\s+/;
-            my $syscall_l = "xmodmap -e \"remove ".$1." = Super_L\"\n";
-            my $syscall_r = "xmodmap -e \"remove ".$1." = Super_R\"\n";
-            #print $syscall_l;
-            #print $syscall_r;
-            system($syscall_l);
-            system($syscall_r);
-          }
+# Remap the Super keys to Control keys -- emulate mac keyboard when VNC'ing to a Linux box
+# Valid only if the OS is Linux
+# Valid only if the OS doesn't have VMWARE installed -- where VMWARE already handles the mapping
+if [[ $CURRENT_OS == 'Linux' ]]; then
+    if [[ -f /usr/bin/vmware-hgfsclient ]]; then
+        # Do nothing - VMWARE handles the mapping
+    else
+        function supercntrl {
+            perl -e '
+                my @modmap = `xmodmap`;
+                # Iterate the modmap - look for existing Super_ and remove them
+                foreach (@modmap) {
+                  if (/Super/) {
+                    #print $_;
+                    /^(\w+)\s+/;
+                    my $syscall_l = "xmodmap -e \"remove ".$1." = Super_L\"\n";
+                    my $syscall_r = "xmodmap -e \"remove ".$1." = Super_R\"\n";
+                    #print $syscall_l;
+                    #print $syscall_r;
+                    system($syscall_l);
+                    system($syscall_r);
+                  }
+                }
+                # Add the Super Keys back to control
+                my $syscall_l = "xmodmap -e \"add control = Super_L\"\n";
+                my $syscall_r = "xmodmap -e \"add control = Super_R\"\n";
+                system($syscall_l);
+                system($syscall_r);
+            '
         }
-        # Add the Super Keys back to control
-        my $syscall_l = "xmodmap -e \"add control = Super_L\"\n";
-        my $syscall_r = "xmodmap -e \"add control = Super_R\"\n";
-        system($syscall_l);
-        system($syscall_r);
-    '
-}
+    fi
+fi
+
 
 
