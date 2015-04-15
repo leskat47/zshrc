@@ -34,6 +34,11 @@ alias vncstart_mbp='vncserver -depth 24 -geometry 1440x900'
 alias vncstart_mbp_shared='vncserver -alwaysshared -depth 24 -geometry 1440x900'
 alias vnckill='vncserver -kill'
 
+# Python
+function profile {
+    python -m cProfile "$@"
+}
+
 if [[  $(uname) == Darwin  ]]; then
     alias textwrangler="open -a TextWrangler"
 fi
