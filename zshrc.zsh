@@ -96,18 +96,19 @@ if [[ $DISTRO_REL == 'current' ]]; then
     # Repos
     antigen bundle git
     antigen bundle svn
-    
+
     # Python
     antigen bundle pip
     antigen bundle python
     antigen bundle virtualenv
+    antigen bundle virtualenvwrapper
 
     # Syntax highlighting bundle
     antigen bundle zsh-users/zsh-syntax-highlighting
-    antigen-bundle zsh-users/zsh-history-substring-search
+    antigen bundle zsh-users/zsh-history-substring-search
 
-    # Load the theme.
-    antigen theme avit
+    # Load the theme
+    antigen theme ys
 
 fi
 
