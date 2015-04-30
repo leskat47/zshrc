@@ -108,7 +108,7 @@ if [[ $DISTRO_REL == 'current' ]]; then
     antigen bundle zsh-users/zsh-history-substring-search
 
     # Load the theme
-    antigen theme ys
+    antigen theme SeanOBoyle/oh-my-zsh-themes ys-so
 
 fi
 
