@@ -41,6 +41,7 @@ function profile {
 
 if [[  $(uname) == Darwin  ]]; then
     alias textwrangler="open -a TextWrangler"
+    alias sublime="open -a Sublime\ Text"
 fi
 
 if [[ -d /etc/vmware-tools ]]; then
