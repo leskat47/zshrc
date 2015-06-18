@@ -84,6 +84,32 @@ function renamertest {
     find . -name "$1" -exec rename -n s/$1/$2/ {} \;
 }
 
+# Install Libs that we want that don't come on a fresh install
+function install_libs {
+    # Needed for supervisord
+    sudo yum install python-devel
+    
+    # Required for Cadence
+    sudo yum install /lib/ld-linux.so.2
+    sudo yum install glibc-devel.i686
+    sudo yum install libX11.so.6
+    sudo yum install libXext.so.6
+    
+    # Required for lmgrd
+    sudo yum install /lib/ld-lsb.so.3
+    sudo yum install /lib64/ld-lsb-x86-64.so.3
+
+    # Required for Altera Quartus
+    sudo yum install libpng12.so.0
+    sudo yum install libfreetype.so.6
+    sudo yum install libSM.so.6
+    sudo yum install libfontconfig.so.1
+
+    # Extra Packages for Enterprise Linux Repo - useful for getting the latest tools on the dated RHEL/CentOS installs
+    sudo yum install epel-release
+}
+
+
 # Remap the Super keys to Control keys -- emulate mac keyboard when VNC'ing to a Linux box
 # Valid only if the OS is Linux
 # Valid only if the OS doesn't have VMWARE installed -- where VMWARE already handles the mapping
