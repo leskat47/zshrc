@@ -66,6 +66,8 @@ else
     DISTRO_REL='current'
 fi
 
+# Setup VirtualEnvWrapper
+export WORKON_HOME=$HOME/.virtualenvs
 
 # Load Antigen
 source ~/.antigen/antigen/antigen.zsh
