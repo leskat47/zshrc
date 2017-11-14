@@ -24,6 +24,9 @@ fi
 # Add local dir to path
 export PATH=.:$PATH
 
+# Prevent Runaway Jobs from taking down the machine
+ulimit -Sv 30000000
+
 #
 # OS Detection
 #
@@ -47,7 +50,7 @@ elif [[ $UNAME == 'Linux' ]]; then
         else
             DISTRO='RHEL'
         fi
-        
+
         # Still have some old RHEL distros around -- mark 6,7 as current
         if grep -q "release 7" /etc/redhat-release; then
             DISTRO_REL='current'
@@ -94,7 +97,7 @@ fi
 
 # Only Load Antigen Bundles for Current Distros
 if [[ $DISTRO_REL == 'current' ]]; then
-    
+
     # Repos
     antigen bundle git
     antigen bundle svn
@@ -104,6 +107,8 @@ if [[ $DISTRO_REL == 'current' ]]; then
     antigen bundle python
     antigen bundle virtualenv
     antigen bundle virtualenvwrapper
+
+    antigen bundle zsh-users/zsh-completions
 
     # Syntax highlighting bundle
     antigen bundle zsh-users/zsh-syntax-highlighting
@@ -127,5 +132,4 @@ fi
 if [[ -e ~/zshrc_work/worktools.zsh ]]; then
     source ~/zshrc_work/worktools.zsh
 fi
-
 
