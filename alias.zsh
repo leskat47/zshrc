@@ -22,15 +22,16 @@ alias df="df -h -T"
 alias dfp="df | grep %"
 alias dud1="du --max-depth=1 -h"
 
-# Remount FileSystems
-alias remount='sudo service autofs restart'
-
 # VNC
 alias vncstart_led='vncserver -depth 24 -geometry 2560x1440'
 alias vncstart_led_shared='vncserver -alwaysshared -depth 24 -geometry 2560x1440'
 alias vncstart_mbp='vncserver -depth 24 -geometry 1440x900'
 alias vncstart_mbp_shared='vncserver -alwaysshared -depth 24 -geometry 1440x900'
 alias vnckill='vncserver -kill'
+
+# Git Prompt
+alias git_prompt_off='git config oh-my-zsh.hide-status 1'
+alias git_prompt_on='git config oh-my-zsh.hide-status 0'
 
 # Python
 function profile {
@@ -89,9 +90,6 @@ if [[ $CURRENT_OS == 'Linux' ]]; then
     if [[ -f /usr/bin/vmware-hgfsclient ]]; then
         # Do nothing - VMWARE handles the mapping
     else
-        alias supercntrl='xmodmap ~/.Xmodmap' 
+        alias supercntrl='xmodmap ~/.Xmodmap'
     fi
 fi
-
-
-
