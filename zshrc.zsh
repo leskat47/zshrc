@@ -81,7 +81,6 @@ antigen use oh-my-zsh
 # OS specific plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
     antigen bundle brew
-    antigen bundle brew-cask
     antigen bundle osx
 elif [[ $CURRENT_OS == 'Linux' ]]; then
 
@@ -115,8 +114,9 @@ if [[ $DISTRO_REL == 'current' ]]; then
     antigen bundle zsh-users/zsh-history-substring-search
 
     # Load the theme
-    #antigen theme SeanOBoyle/oh-my-zsh-themes ys-so
-    antigen theme eendroroy/alien alien
+    antigen theme SeanOBoyle/oh-my-zsh-themes ys-so
+    #antigen theme eendroroy/alien alien
+    #antigen theme eendroroy/alien-minimal alien-minimal
 
 fi
 
