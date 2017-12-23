@@ -32,6 +32,7 @@ ulimit -Sv 30000000
 #
 
 UNAME=`uname`
+UNAME_KERNEL_VERSION=`uname -v`
 
 # Fallback info
 CURRENT_OS='Linux'
@@ -63,6 +64,11 @@ elif [[ $UNAME == 'Linux' ]]; then
         # Assume Ubuntu if it's not RHEL
         DISTRO='Ubuntu'
         DISTRO_REL='current'
+
+        if  [[ $UNAME_KERNEL_VERSION == *"Microsoft"* ]]; then
+            DISTRO='UbuntuMicrosoft' 
+        fi
+
     fi
 else
     DISTRO='Unknown'
@@ -72,8 +78,19 @@ fi
 # Setup VirtualEnvWrapper
 export WORKON_HOME=$HOME/.virtualenvs
 
+
+if [[ $DISTRO == 'UbuntuMicrosoft' ]]; then
+   # Windows Linux Subsystem doesn't support nicing
+   unsetopt BGNICE
+fi
+
 # Load Antigen
 source ~/.antigen/antigen/antigen.zsh
+
+if [[ $DISTRO == 'UbuntuMicrosoft' ]]; then
+   # Can't check for duplicates in microsoft kernel
+    _ANTIGEN_WARN_DUPLICATES=false
+fi
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
