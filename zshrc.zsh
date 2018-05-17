@@ -21,9 +21,6 @@ if [[ $TERM == 'rxvt-unicode' ]] ; then
     export TERM='xterm'
 fi
 
-# Add local dir to path
-export PATH=.:$PATH
-
 # Prevent Runaway Jobs from taking down the machine
 ulimit -Sv 30000000
 
