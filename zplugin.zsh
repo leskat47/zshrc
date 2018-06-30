@@ -17,8 +17,8 @@ zplugin snippet OMZ::lib/theme-and-appearance.zsh
 if [[ $CURRENT_OS == 'OS X' ]]; then
   zplugin ice wait"0"
   zplugin snippet OMZ::plugins/brew/brew.plugin.zsh
-  zplugin ice wait"0"
-  zplugin snippet OMZ::plugins/osx/osx.plugin.zsh
+  #zplugin ice wait"0"
+  #zplugin snippet OMZ::plugins/osx/osx.plugin.zsh
   zplugin ice wait"0"
   zplugin snippet OMZ::plugins/iterm2/iterm2.plugin.zsh
 elif [[ $CURRENT_OS == 'Linux' ]]; then
