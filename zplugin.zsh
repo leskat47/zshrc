@@ -1,6 +1,7 @@
 source ~/.zplugin/bin/zplugin.zsh
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
+autoload -Uz compinit
 
 # OMZ Libs
 zplugin snippet OMZ::lib/directories.zsh
