@@ -3,6 +3,8 @@
 # ln -s this file to ~/.zshrc
 #
 
+#zmodload zsh/zprof
+
 # For sudo-ing aliases
 # https://wiki.archlinux.org/index.php/Sudo#Passing_aliases
 alias sudo='sudo '
@@ -20,6 +22,9 @@ export SVN_EDITOR=vim
 if [[ $TERM == 'rxvt-unicode' ]] ; then
     export TERM='xterm'
 fi
+
+# Add local dir to path
+export PATH=.:$PATH
 
 # Prevent Runaway Jobs from taking down the machine
 ulimit -Sv 30000000
@@ -63,7 +68,7 @@ elif [[ $UNAME == 'Linux' ]]; then
         DISTRO_REL='current'
 
         if  [[ $UNAME_KERNEL_VERSION == *"Microsoft"* ]]; then
-            DISTRO='UbuntuMicrosoft' 
+            DISTRO='UbuntuMicrosoft'
         fi
 
     fi
@@ -75,68 +80,8 @@ fi
 # Setup VirtualEnvWrapper
 export WORKON_HOME=$HOME/.virtualenvs
 
-
-if [[ $DISTRO == 'UbuntuMicrosoft' ]]; then
-   # Windows Linux Subsystem doesn't support nicing
-   unsetopt BGNICE
-fi
-
-# Load Antigen
-source ~/.antigen/antigen/antigen.zsh
-
-if [[ $DISTRO == 'UbuntuMicrosoft' ]]; then
-   # Can't check for duplicates in microsoft kernel
-    _ANTIGEN_WARN_DUPLICATES=false
-fi
-
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-
-# OS specific plugins
-if [[ $CURRENT_OS == 'OS X' ]]; then
-    antigen bundle brew
-    antigen bundle osx
-elif [[ $CURRENT_OS == 'Linux' ]]; then
-
-    if [[ $DISTRO == 'CentOS' ]]; then
-        #antigen bundle centos
-    elif [[ $DISTRO == 'Ubuntu' ]]; then
-        antigen bundle command-not-found
-    fi
-
-elif [[ $CURRENT_OS == 'Cygwin' ]]; then
-    antigen bundle cygwin
-fi
-
-# Only Load Antigen Bundles for Current Distros
-if [[ $DISTRO_REL == 'current' ]]; then
-
-    # Repos
-    antigen bundle git
-    antigen bundle svn
-
-    # Python
-    antigen bundle pip
-    antigen bundle python
-    antigen bundle virtualenv
-    antigen bundle virtualenvwrapper
-
-    antigen bundle zsh-users/zsh-completions
-
-    # Syntax highlighting bundle
-    antigen bundle zsh-users/zsh-syntax-highlighting
-    antigen bundle zsh-users/zsh-history-substring-search
-
-    # Load the theme
-    antigen theme SeanOBoyle/oh-my-zsh-themes ys-so
-    #antigen theme eendroroy/alien alien
-    #antigen theme eendroroy/alien-minimal alien-minimal
-
-fi
-
-# Tell antigen that you're done.
-antigen apply
-
+# Source ZPlugin Modules
+source ~/zshrc/zplugin.zsh
 
 # Source Alias File
 if [[ -e ~/zshrc/alias.zsh ]]; then
@@ -148,3 +93,4 @@ if [[ -e ~/zshrc_work/worktools.zsh ]]; then
     source ~/zshrc_work/worktools.zsh
 fi
 
+#zprof
