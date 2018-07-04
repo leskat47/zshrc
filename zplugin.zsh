@@ -27,8 +27,7 @@ zplugin snippet OMZ::lib/theme-and-appearance.zsh
 if [[ $CURRENT_OS == 'OS X' ]]; then
   zplugin ice wait"0"
   zplugin snippet OMZ::plugins/brew/brew.plugin.zsh
-  #zplugin ice wait"0"
-  #zplugin snippet OMZ::plugins/osx/osx.plugin.zsh
+  zplugin ice svn wait"0" lucid atinit"local ZSH=\$PWD"; zplugin snippet OMZ::plugins/osx
   zplugin ice wait"0"
   zplugin snippet OMZ::plugins/iterm2/iterm2.plugin.zsh
 elif [[ $CURRENT_OS == 'Linux' ]]; then
@@ -63,18 +62,19 @@ zplugin light zdharma/history-search-multi-word
 # Git
 zplugin ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" wait"0"
 zplugin light tj/git-extras
-zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin ice svn wait"0" lucid; zplugin snippet OMZ::plugins/git
+zplugin ice svn wait"0" lucid; zplugin snippet OMZ::plugins/gitfast
 
 # Python
 zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
 zplugin snippet OMZ::plugins/python/python.plugin.zsh
-if ! type workon &>/dev/null; then
+if type workon &>/dev/null; then
   zplugin snippet OMZ::plugins/virtualenv/virtualenv.plugin.zsh
   unset VIRTUAL_ENV_DISABLE_PROMPT
   zplugin snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
 fi
 
-# Diff - TODO - add stuffs to gitconfig so it works with git
+# Diff
 zplugin ice wait"0" as"program" pick"bin/git-dsf"
 zplugin light zdharma/zsh-diff-so-fancy
 
@@ -90,3 +90,4 @@ zplugin light zdharma/fast-syntax-highlighting
 
 # Load the pure theme, with zsh-async that's bundled with it
 zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
+
