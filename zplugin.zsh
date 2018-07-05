@@ -61,10 +61,9 @@ zplugin ice wait"0"
 zplugin light zdharma/history-search-multi-word
 
 # Git
-zplugin ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" wait"0"
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" src"etc/git-extras-completion.zsh" wait"0"
 zplugin light tj/git-extras
-zplugin ice svn wait"0" lucid; zplugin snippet OMZ::plugins/git
-zplugin ice svn wait"0" lucid; zplugin snippet OMZ::plugins/gitfast
 
 # Repo (for git)
 zplugin ice svn wait"0" lucid; zplugin snippet OMZ::plugins/repo
