@@ -27,7 +27,8 @@ zplugin snippet OMZ::lib/theme-and-appearance.zsh
 if [[ $CURRENT_OS == 'OS X' ]]; then
   zplugin ice wait"0"
   zplugin snippet OMZ::plugins/brew/brew.plugin.zsh
-  zplugin ice svn wait"0" lucid atinit"local ZSH=\$PWD"; zplugin snippet OMZ::plugins/osx
+  zplugin ice svn wait"0" lucid atinit"local ZSH=\$PWD; mkdir -p plugins; cd plugins; ln -sfn ../. osx";
+  zplugin snippet OMZ::plugins/osx
   zplugin ice wait"0"
   zplugin snippet OMZ::plugins/iterm2/iterm2.plugin.zsh
 elif [[ $CURRENT_OS == 'Linux' ]]; then
@@ -90,4 +91,3 @@ zplugin light zdharma/fast-syntax-highlighting
 
 # Load the pure theme, with zsh-async that's bundled with it
 zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
-
