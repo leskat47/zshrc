@@ -66,6 +66,9 @@ zplugin light tj/git-extras
 zplugin ice svn wait"0" lucid; zplugin snippet OMZ::plugins/git
 zplugin ice svn wait"0" lucid; zplugin snippet OMZ::plugins/gitfast
 
+# Repo (for git)
+zplugin ice svn wait"0" lucid; zplugin snippet OMZ::plugins/repo
+
 # Python
 zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
 zplugin snippet OMZ::plugins/python/python.plugin.zsh
