@@ -66,7 +66,7 @@ zplugin ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" src"etc/git-ext
 zplugin light tj/git-extras
 
 # Repo (for git)
-zplugin ice svn wait"0" lucid; zplugin snippet OMZ::plugins/repo
+zplugin ice svn; zplugin snippet OMZ::plugins/repo
 
 # Python
 zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
