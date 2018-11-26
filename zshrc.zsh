@@ -62,6 +62,9 @@ elif [[ $UNAME == 'Linux' ]]; then
         else
             DISTRO_REL='old'
         fi
+    elif [[ $UNAME_KERNEL_VERSION == *rodete* ]]; then
+        DISTRO='Rodete'
+	DISTRO_REL='current'
     else
         # Assume Ubuntu if it's not RHEL
         DISTRO='Ubuntu'
