@@ -97,4 +97,10 @@ if [[ -e ~/zshrc_work/worktools.zsh ]]; then
     alias srcwrk='source ~/zshrc_work/worktools.zsh'
 fi
 
+# Source "Me" File
+if [[ -e ~/zshrc_me/me.zsh ]]; then
+    source ~/zshrc_me/me.zsh
+    alias srcme='source ~/zshrc_me/me.zsh'
+fi
+
 #zprof
