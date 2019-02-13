@@ -93,7 +93,6 @@ fi
 
 # Source Work Tools File
 if [[ -e ~/zshrc_work/worktools.zsh ]]; then
-    source ~/zshrc_work/worktools.zsh
     alias srcwrk='source ~/zshrc_work/worktools.zsh'
 fi
 
