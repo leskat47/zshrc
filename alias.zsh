@@ -20,7 +20,7 @@ fi
 # Disk Status
 alias df="df -h -T"
 alias dfp="df | grep %"
-alias dud1="du --max-depth=1 -h"
+alias dud1="du --max-depth=1 -h | sort -h"
 
 # VNC
 alias vncstart_led='vncserver -depth 24 -geometry 2560x1440'
