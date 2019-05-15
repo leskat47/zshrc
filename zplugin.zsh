@@ -74,6 +74,7 @@ zplugin ice svn; zplugin snippet OMZ::plugins/repo
 # Python
 zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
 zplugin snippet OMZ::plugins/python/python.plugin.zsh
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 if type workon &>/dev/null; then
   zplugin snippet OMZ::plugins/virtualenv/virtualenv.plugin.zsh
   unset VIRTUAL_ENV_DISABLE_PROMPT
@@ -96,3 +97,4 @@ zplugin light zdharma/fast-syntax-highlighting
 
 # Load the pure theme, with zsh-async that's bundled with it
 zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
+
