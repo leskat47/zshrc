@@ -3,8 +3,6 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 autoload -Uz compinit
 
-unset LD_LIBRARY_PATH
-
 # OMZ Libs
 zplugin snippet OMZ::lib/bzr.zsh
 zplugin snippet OMZ::lib/clipboard.zsh
