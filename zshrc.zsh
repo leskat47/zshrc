@@ -90,8 +90,8 @@ fi
 # Setup VirtualEnvWrapper
 export WORKON_HOME=$HOME/.virtualenvs
 
-# Source ZPlugin Modules
-source ~/zshrc/zplugin.zsh
+# Source zinit Modules
+source ~/zshrc/zinit.zsh
 
 # Source Alias File
 if [[ -e ~/zshrc/alias.zsh ]]; then
