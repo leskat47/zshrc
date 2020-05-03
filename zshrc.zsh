@@ -26,16 +26,6 @@ fi
 # Ensure path is unique
 typeset -U path
 
-# Prevent Runaway Jobs from taking down the machine
-# Limit to 90% of the max physical memory
-if [[ -e /proc/meminfo ]] ; then
-    MAX_MEM=`awk '/MemTotal/ {print $2}' /proc/meminfo`
-    let PERCENT_LIMIT=0.9
-    MAX_MEM_LIMIT=$(($MAX_MEM*$PERCENT_LIMIT))
-    MAX_MEM_LIMIT_INT=${MAX_MEM_LIMIT%%.*}
-    ulimit -Sv $MAX_MEM_LIMIT_INT
-fi
-
 #
 # OS Detection
 #
