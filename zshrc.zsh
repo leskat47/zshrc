@@ -23,11 +23,8 @@ if [[ $TERM == 'rxvt-unicode' ]] ; then
     export TERM='xterm'
 fi
 
-# Add local dir to path
-export PATH=.:$PATH
-
-# Prevent Runaway Jobs from taking down the machine
-ulimit -Sv 30000000
+# Ensure path is unique
+typeset -U path
 
 #
 # OS Detection
@@ -62,6 +59,9 @@ elif [[ $UNAME == 'Linux' ]]; then
         else
             DISTRO_REL='old'
         fi
+    elif [[ $UNAME_KERNEL_VERSION == *rodete* ]]; then
+        DISTRO='Rodete'
+	DISTRO_REL='current'
     else
         # Assume Ubuntu if it's not RHEL
         DISTRO='Ubuntu'
@@ -80,8 +80,8 @@ fi
 # Setup VirtualEnvWrapper
 export WORKON_HOME=$HOME/.virtualenvs
 
-# Source ZPlugin Modules
-source ~/zshrc/zplugin.zsh
+# Source zinit Modules
+source ~/zshrc/zinit.zsh
 
 # Source Alias File
 if [[ -e ~/zshrc/alias.zsh ]]; then
@@ -90,7 +90,13 @@ fi
 
 # Source Work Tools File
 if [[ -e ~/zshrc_work/worktools.zsh ]]; then
-    source ~/zshrc_work/worktools.zsh
+    alias srcwrk='source ~/zshrc_work/worktools.zsh'
+fi
+
+# Source "Me" File
+if [[ -e ~/zshrc_me/me.zsh ]]; then
+    source ~/zshrc_me/me.zsh
+    alias srcme='source ~/zshrc_me/me.zsh'
 fi
 
 #zprof

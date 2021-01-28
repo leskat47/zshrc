@@ -9,9 +9,9 @@ alias more="less"
 alias osver='echo "UNKNOWN OS: $OSTYPE"'
 if [[ ${OSTYPE} == linux* ]]; then
     alias osver='lsb_release -a'
-fi
-if [[ ${OSTYPE} == solaris ]]; then
-    alias osver='cat /etc/release'
+    if [[ -f /etc/*release* ]]; then
+        alias osver='cat /etc/*release*'
+    fi
 fi
 if [[ ${OSTYPE} == darwin* ]]; then
     alias osver='uname -a'
@@ -20,7 +20,7 @@ fi
 # Disk Status
 alias df="df -h -T"
 alias dfp="df | grep %"
-alias dud1="du --max-depth=1 -h"
+alias dud1="du --max-depth=1 -h | sort -h"
 
 # VNC
 alias vncstart_led='vncserver -depth 24 -geometry 2560x1440'
